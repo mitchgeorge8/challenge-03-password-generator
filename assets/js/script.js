@@ -5,52 +5,84 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 const lowerChars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 const upperChars = lowerChars.map(char => char.toUpperCase());
 const specialChars = [' ', '!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[','\\',']','^','_','`','{','|','}','~'];
-const chars = [numbers, lowerChars, upperChars, specialChars];
-
-let charSelect = "";
-let password = "";
 
 // Functions
 function generatePassword() {
-  // Declare user inputs and create conditions
-  let charCount = getCharCount();
-  if (charCount === undefined) {
+  // Declare and reset password and character array
+  let password = "";
+  let charSelect = [];
+
+  // Declare password length
+  let passLength = getPassLength();
+  if (passLength === undefined) {
     return null;
   }
-  let numConfirm = confirm("Include numbers?");
-  let lowerCharConfirm = confirm("Include lower case letters?");
-  let upperCharConfirm = confirm("Include upper case letters?");
-  let specialCharConfirm = confirm("Include special characters?");
 
-  // Generate password
-  for (let i = 0; i < charCount; i++) {
-    password += password + lowerChars[getRand(0, length.lowerChars)];
+  // Declare user input and create charSelect array
+  let conf1 = confirm("Include numbers?");
+  if (conf1 === true) {
+    charSelect.push(...numbers);
+  }
+
+  let conf2 = confirm("Include lower case letters?");
+  if (conf2 === true) {
+    charSelect.push(...lowerChars);
+  }
+
+  let conf3 = confirm("Include upper case letters?");
+  if (conf3 === true) {
+    charSelect.push(...upperChars);
+  }
+
+  let conf4 = confirm("Include special characters?");
+  if (conf4 === true) {
+    charSelect.push(...specialChars);
+  }
+
+  // If user selects 'Cancel' for all options
+  if (charSelect.length === 0) {
+    alert("Password must contain at least one type of character.\nPlease try again.");
+    return null;
+  }
+
+  // Generates password using random number from 0 to charSelect.length - 1
+  for (let i = 0; i < passLength; i++) {
+    password += charSelect[getRand(charSelect.length)];
   }
   return password;
 }
 
-function getCharCount() {
-  count = prompt("Choose password length:");
-  if (count === null) {
+// Returns password length after conditions are met
+function getPassLength() {
+  length = prompt("Choose password length:");
+
+  // If the user hits 'Cancel'
+  if (length === null) {
     return;
   }
-  while (count < 8 || count > 128) {
-    if (count < 8) {
+
+  // Password length must be between 8 and 128 characters
+  while (length < 8 || length > 128) {
+    if (length < 8) {
       alert("Password must contain at least 8 characters.")
     }
-    else if (count > 128) {
+    else if (length > 128) {
       alert("Password cannot exceed 128 characters");
     }
-    count = prompt("Choose password length:");
-    if (count === null) {
+
+    length = prompt("Choose password length:");
+
+    // If the user hits 'Cancel' after alerts
+    if (length === null) {
       return;
     }
   }
-  return count;
+  return length;
 }
 
-function getRand(min, max) {
-  return Math.floor(Math.random() * (max - min));
+// Return random number from 0 to charSelect.length - 1
+function getRand(max) {
+  return Math.floor(Math.random() * max);
 }
 
 // Get references to the #generate element

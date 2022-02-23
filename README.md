@@ -36,6 +36,9 @@ WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 ```
 
+### Screenshot
+![Example of a 12 character password with all parameters selected](assets/images/mockup.png)
+
 ## Getting Started
 
 ### Prerequisites
