@@ -37,7 +37,7 @@ THEN the password is either displayed in an alert or written to the page
 ```
 
 ### Screenshot
-![Example of a 12 character password with all parameters selected](assets/images/mockup.png)
+![Example of a 12 character password with all parameters selected](assets/images/screenshot.png)
 
 ## Getting Started
 
@@ -47,7 +47,7 @@ Recommended web browser [Google Chrome](https://www.google.com/chrome/)
 
 ### Executing program
 
-Click the link to the website [here](https://mitchgeorge8.github.io/challenge-01-code-refactor/)
+Click the link to the website [here](https://mitchgeorge8.github.io/challenge-03-password-generator/)
 
 ## Help
 
